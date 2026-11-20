@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Daily Calendar</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="banner" class="banner" hidden>
+  <div class="banner-body">
+    <h2 id="banner-title">Today</h2>
+    <ul id="banner-list"></ul>
+    <p id="banner-empty" hidden>Nothing planned yet. Add something below.</p>
+    <button id="banner-close">Got it</button>
+  </div>
+</div>
+
+<main>
+  <header>
+    <h1>My Daily Calendar</h1>
+    <button id="notify-btn" class="ghost" hidden>🔔 Enable notifications</button>
+  </header>
+
+  <section class="cal">
+    <div class="cal-nav">
+      <button id="prev" aria-label="Previous month">‹</button>
+      <h2 id="month-label"></h2>
+      <button id="next" aria-label="Next month">›</button>
+      <button id="today-btn" class="ghost">Today</button>
+    </div>
+    <div class="grid weekdays">
+      <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+    </div>
+    <div id="days" class="grid days"></div>
+  </section>
+
+  <section class="day">
+    <h2 id="day-label"></h2>
+    <form id="add-form">
+      <input id="add-input" type="text" placeholder="Add a to-do for this day…" autocomplete="off" required>
+      <button type="submit">Add</button>
+    </form>
+    <ul id="todos"></ul>
+    <p id="todos-empty" class="muted">No to-dos for this day.</p>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
