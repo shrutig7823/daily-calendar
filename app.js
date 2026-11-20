@@ -36,8 +36,24 @@
       const b = document.createElement('button');
       b.className = 'cell' + (d.getMonth() !== view.getMonth() ? ' other' : '') +
         (k === key(today) ? ' today' : '') + (k === selected ? ' selected' : '');
-      const pending = list(k).some((t) => !t.done);
-      b.innerHTML = '<span>' + d.getDate() + '</span><span class="dot' + (pending ? '' : ' none') + '"></span>';
+      const items = list(k);
+      const num = document.createElement('span');
+      num.className = 'num';
+      num.textContent = d.getDate();
+      b.appendChild(num);
+      items.slice(0, 3).forEach((t) => {
+        const line = document.createElement('span');
+        line.className = 'item' + (t.done ? ' done' : '');
+        line.textContent = t.text;
+        line.title = t.text;
+        b.appendChild(line);
+      });
+      if (items.length > 3) {
+        const more = document.createElement('span');
+        more.className = 'more';
+        more.textContent = '+' + (items.length - 3) + ' more';
+        b.appendChild(more);
+      }
       b.onclick = () => { selected = k; renderAll(); };
       box.appendChild(b);
     }
