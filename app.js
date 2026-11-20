@@ -6,6 +6,18 @@
   try { data = JSON.parse(localStorage.getItem(STORE)) || {}; } catch (e) {}
   const save = () => { try { localStorage.setItem(STORE, JSON.stringify(data)); } catch (e) {} };
 
+  // Merge starter tasks once (tracked by id so deleted ones stay deleted).
+  const SEEDED = STORE + '-seeded';
+  let seeded = [];
+  try { seeded = JSON.parse(localStorage.getItem(SEEDED)) || []; } catch (e) {}
+  (window.SEED_TASKS || []).forEach((s) => {
+    if (seeded.includes(s.id)) return;
+    (data[s.date] = data[s.date] || []).push({ text: s.text, done: false });
+    seeded.push(s.id);
+  });
+  try { localStorage.setItem(SEEDED, JSON.stringify(seeded)); } catch (e) {}
+  save();
+
   const key = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   const today = new Date();
   let view = new Date(today.getFullYear(), today.getMonth(), 1);
