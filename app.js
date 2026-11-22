@@ -128,6 +128,18 @@
     btn.onclick = () => Notification.requestPermission().then(() => { btn.hidden = true; systemNotify(); });
   }
 
+  const themeBtn = $('theme-btn');
+  const syncTheme = () => {
+    themeBtn.textContent = document.documentElement.dataset.theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+  };
+  themeBtn.onclick = () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('daily-calendar-theme', next); } catch (e) {}
+    syncTheme();
+  };
+  syncTheme();
+
   renderAll();
   showBanner();
   systemNotify();

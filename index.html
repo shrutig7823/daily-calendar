@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>My Daily Calendar</title>
 <link rel="stylesheet" href="style.css">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('daily-calendar-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
 </head>
 <body>
 <div id="banner" class="banner" hidden>
@@ -19,7 +20,10 @@
 <main>
   <header>
     <h1>My Daily Calendar</h1>
-    <button id="notify-btn" class="ghost" hidden>🔔 Enable notifications</button>
+    <div class="header-btns">
+      <button id="theme-btn" class="ghost" aria-label="Toggle dark/light theme">☀️ Light</button>
+      <button id="notify-btn" class="ghost" hidden>🔔 Enable notifications</button>
+    </div>
   </header>
 
   <section class="cal">
